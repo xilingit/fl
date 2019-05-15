@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_myapp/bottom_navigate.dart';
+import 'package:flutter_myapp/myfab.dart';
 import 'model/post.dart';
 import './drawer.dart';
 import './bottom_navigate.dart';
@@ -14,20 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.blue),
-        title: ' Welcome tohich',
+        title: ' Welcome to my first flutter demo',
         home: Home());
-  }
-
-  void getHttp() async {
-    try {
-      Response response = await Dio().get("http://www.baidu.com");
-      print(response.headers);
-    } catch (e) {
-      print(e);
-    }
   }
 }
 
+//首页
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,7 +32,7 @@ class Home extends StatelessWidget {
             icon: Icon(Icons.shopping_cart),
             tooltip: 'Open a cart',
             onPressed: () {
-              printIt('Shopping cart opened.');
+              print('Shopping cart opened.');
             },
           ),
         ],
@@ -50,8 +41,7 @@ class Home extends StatelessWidget {
         itemCount: posts.length,
         itemBuilder: _listItemBuilder,
       ),
-      floatingActionButton: FloatingActionButton(
-          tooltip: "hello world", onPressed: () {}, child: Icon(Icons.add)),
+      floatingActionButton: MyFab(),
       drawer: MyDrawer(),
       bottomNavigationBar: MyBottomNavigationBar(),
     );
@@ -73,8 +63,4 @@ class Home extends StatelessWidget {
       ),
     );
   }
-}
-
-void printIt(String s) {
-  print("this is $s");
 }
